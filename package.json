@@ -24,5 +24,8 @@
   "homepage": "https://github.com/skylerto/CatchUp#readme",
   "dependencies": {
     "youtube-dl": "1.10.5"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "0.37.2"
   }
 }
