@@ -3,19 +3,7 @@
 var Video = require('./lib/Video.js');
 var fs = require('fs');
 
-fs.readdir('./app/talks', (err, files) => {
-  let talks = document.getElementById("talks");
-  let node;
-  let value;
-  files.forEach(f => {
-    node = document.createElement("LI");
-    node.className = "talk";
-    value = document.createTextNode(f);
-    node.appendChild(value);
-    talks.appendChild(node);
-    console.log("" + f);
-  });
-});
+
 
 let talks = document.getElementById("talks");
 talks.addEventListener("click", (e) => {
@@ -30,12 +18,26 @@ document.getElementById("download-button").addEventListener("click", () => {
   var url = document.getElementById("url").value;
   let follow = new Video(url);
   console.log(url);
-  follow.download();
+  follow.download(update);
   console.log("Downloading: " + follow.url);
 });
 
-document.getElementById("test").addEventListener("click", () => {
-  console.log("Playing talks/lol.m4a");
-  let player = document.getElementById("player");
-  player.src = "talks/lol.m4a";
-});
+function update() {
+  fs.readdir('./app/talks', (err, files) => {
+    let talks = document.getElementById("talks");
+    while (talks.firstChild) {
+      talks.removeChild(talks.firstChild);
+    }
+    let node;
+    let value;
+    files.forEach(f => {
+      f = f.substring(0, f.lastIndexOf("."));
+      node = document.createElement("LI");
+      node.className = "talk";
+      value = document.createTextNode(f);
+      node.appendChild(value);
+      talks.appendChild(node);
+      console.log("" + f);
+    });
+  });
+}

@@ -1,6 +1,7 @@
 "use strict";
-var fs = require('fs');
-var youtubedl = require('youtube-dl');
+const fs = require('fs');
+const youtubedl = require('youtube-dl');
+const exec = require('child_process').exec;
 
 
 module.exports = class Video {
@@ -26,7 +27,18 @@ module.exports = class Video {
     return this._title;
   }
 
-  download() {
+  download(callback) {
+
+    exec('bs',
+      (error, stdout, stderr) => {
+        if (stderr) {
+          return "Please install youtube-dl";
+        }
+        if (error !== null) {
+          console.log('exec error: ' + error);
+        }
+      }
+    );
     var that = this;
     var video = youtubedl(this._url, ['--format=140'], {
       cwd: __dirname
@@ -36,6 +48,9 @@ module.exports = class Video {
       if (err) throw err;
       that.title = info.title;
       video.pipe(fs.createWriteStream("./app/talks/" + that.title + '.m4a'));
+    });
+    video.on('end', function() {
+      callback();
     });
   }
 }
