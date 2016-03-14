@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/skylerto/CatchUp/issues"
   },
-  "homepage": "https://github.com/skylerto/CatchUp#readme"
+  "homepage": "https://github.com/skylerto/CatchUp#readme",
+  "dependencies": {
+    "youtube-dl": "1.10.5"
+  }
 }

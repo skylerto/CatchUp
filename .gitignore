@@ -1,3 +1,6 @@
+*.m4a
+/**/*.m4a
+
 ## Electron
 
 .DS_Store

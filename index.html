@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+</head>
+
+<body>
+  <h1>Catch Up</h1> We are using node
+  <script>
+    document.write(process.versions.node)
+  </script>, Chrome
+  <script>
+    document.write(process.versions.chrome)
+  </script>, and Electron
+  <script>
+    document.write(process.versions.electron)
+  </script>.
+
+  <script>
+    var Video = require('./lib/Video.js')
+  </script>
+
+  <input type="text" name="url" id="url"></input>
+  <button id="download">download</button>
+
+  <script>
+
+
+    document.getElementById("download").addEventListener("click", () => {
+      var url = document.getElementById("url").value;
+      let follow = new Video(url);
+      console.log(url);
+      follow.download();
+      console.log("Downloading: " + follow.url);
+    });
+  </script>
+</body>
+
 </html>
