@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Hello World!</title>
+  <link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
 </head>
 
 <body>
@@ -18,24 +19,29 @@
     document.write(process.versions.electron)
   </script>.
 
-  <script>
-    var Video = require('./lib/Video.js')
-  </script>
+  <div class="download">
+    <input type="text" name="url" id="url"></input>
+    <button id="download-button">download</button>
+  </div>
 
-  <input type="text" name="url" id="url"></input>
-  <button id="download">download</button>
+  <div class="player">
+    <div class="">
+      <h2></h2>
+    </div>
+    <div class="">
+      <audio controls="controls" id="player">
+        <source src="" type="audio/mp4">
+      </audio>
+    </div>
+    <button id="test">talks/lol.m4a</button>
+  </div>
 
-  <script>
+  <div class="talks">
+    <ul id="talks"></ul>
+  </div>
 
 
-    document.getElementById("download").addEventListener("click", () => {
-      var url = document.getElementById("url").value;
-      let follow = new Video(url);
-      console.log(url);
-      follow.download();
-      console.log("Downloading: " + follow.url);
-    });
-  </script>
+  <script src="./lib/index.js"></script>
 </body>
 
 </html>

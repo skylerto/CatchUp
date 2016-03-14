@@ -35,7 +35,7 @@ module.exports = class Video {
     youtubedl.getInfo(this._url, "", function(err, info) {
       if (err) throw err;
       that.title = info.title;
-      video.pipe(fs.createWriteStream("talks/" + that.title + '.m4a'));
+      video.pipe(fs.createWriteStream("./app/talks/" + that.title + '.m4a'));
     });
   }
 }
