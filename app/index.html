@@ -4,7 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Catch Up</title>
+  <link rel="stylesheet" href="./css/jquery-ui.min.css">
+  <link rel="stylesheet" href="./css/snackbar.css">
   <link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
+  <script>
+    window.$ = window.jQuery = require('./lib/jquery.min.js');
+  </script>
 </head>
 
 <body>
@@ -39,7 +44,12 @@
       <ul id="talks"></ul>
     </div>
 
-    <script src="./lib/index.js"></script>
+
+    <script src="lib/index.js" type="text/javascript"></script>
+
+    <script src="lib/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="lib/snackbar.min.js" type="text/javascript"></script>
+
     <script>
       update();
     </script>

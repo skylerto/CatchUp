@@ -30,7 +30,7 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
 
   const downloadPath = `${app.getPath('userData')}/talks`;
-  if(!fs.existsSync(downloadPath)){
+  if (!fs.existsSync(downloadPath)) {
     fs.mkdirSync(downloadPath);
   }
   console.log(downloadPath);

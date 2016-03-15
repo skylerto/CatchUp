@@ -1,4 +1,4 @@
-const fs = require('fs');
+window.$ = window.jQuery = require('./lib/jquery.min.js');
 const ipc = require('electron').ipcRenderer;
 
 function update() {
@@ -38,9 +38,15 @@ talks.addEventListener('click', (e) => {
 });
 
 document.getElementById('download-button').addEventListener('click', () => {
+  $("body").snackbar({
+    message: 'Downloading...',
+  });
   const url = document.getElementById('url').value;
   ipc.send('download', url)
   ipc.on('download-reply', (event, message) => {
+    $("body").snackbar({
+      message: 'Download complete!',
+    });
     console.log(message);
     update();
   });
