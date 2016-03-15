@@ -1,14 +1,13 @@
-"use strict";
 const fs = require('fs');
 const youtubedl = require('youtube-dl');
-const exec = require('child_process').exec;
+const path = require('path');
 
 
 module.exports = class Video {
 
   constructor(url) {
     this._url = url;
-    this._title = "";
+    this._title = '';
   }
 
   set url(url) {
@@ -28,29 +27,18 @@ module.exports = class Video {
   }
 
   download(callback) {
-
-    exec('bs',
-      (error, stdout, stderr) => {
-        if (stderr) {
-          return "Please install youtube-dl";
-        }
-        if (error !== null) {
-          console.log('exec error: ' + error);
-        }
-      }
-    );
-    var that = this;
-    var video = youtubedl(this._url, ['--format=140'], {
-      cwd: __dirname
+    const that = this;
+    const video = youtubedl(this._url, ['--format=140'], {
+      cwd: __dirname,
     });
 
-    youtubedl.getInfo(this._url, "", function(err, info) {
+    youtubedl.getInfo(this._url, '', (err, info) => {
       if (err) throw err;
       that.title = info.title;
-      video.pipe(fs.createWriteStream("./app/talks/" + that.title + '.m4a'));
+      video.pipe(fs.createWriteStream(path.join('./app/talks/', that.title, '.m4a')));
     });
-    video.on('end', function() {
+    video.on('end', () => {
       callback();
     });
   }
-}
+};
