@@ -1,6 +1,5 @@
 const fs = require('fs');
-const youtubedl = require('youtube-dl');
-const path = require('path');
+const ytdl = require('ytdl-core');
 
 
 module.exports = class Video {
@@ -28,17 +27,19 @@ module.exports = class Video {
 
   download(callback) {
     const that = this;
-    const video = youtubedl(this._url, ['--format=140'], {
-      cwd: __dirname,
-    });
 
-    youtubedl.getInfo(this._url, '', (err, info) => {
-      if (err) throw err;
+    ytdl.getInfo(this._url, '', (err, info) => {
+      if (err) return;
       that.title = info.title;
-      video.pipe(fs.createWriteStream(path.join('./app/talks/', that.title, '.m4a')));
-    });
-    video.on('end', () => {
-      callback();
+      const down = ytdl(this._url, {
+        filter: (format) => format.container === 'mp4',
+      });
+      const stream = down.pipe(fs.createWriteStream(`./app/talks/${that.title}.m4a`));
+
+      stream.on('finish', () => {
+        console.log(`./app/talks/${that.title}.m4a`);
+        callback();
+      });
     });
   }
 };
