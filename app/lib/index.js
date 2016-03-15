@@ -1,9 +1,10 @@
-const Video = require('./lib/Video.js');
 const fs = require('fs');
 const ipc = require('electron').ipcRenderer;
 
 function update() {
-  fs.readdir(`${app.getPath()}/talks`, (err, files) => {
+  ipc.send('get-files');
+  ipc.on('get-files-reply', (event, files) => {
+    console.log(files);
     const talks = document.getElementById('talks');
     while (talks.firstChild) {
       talks.removeChild(talks.firstChild);
@@ -25,13 +26,15 @@ function update() {
 
 const talks = document.getElementById('talks');
 talks.addEventListener('click', (e) => {
-  const talk = e.target.innerHTML;
+  const trackTitle = e.target.innerHTML;
   const player = document.getElementById('player');
-  
-  player.src = `${app.getPath('userPath')}/talks/${talk}.m4a`;
-  const title = document.getElementById('talk-title');
-  title.innerHTML = `Playing: ${talk}`;
-  console.log(talk);
+  ipc.send('load-track', trackTitle);
+  ipc.on('load-track-reply', (event, track) => {
+    player.src = track;
+    const title = document.getElementById('talk-title');
+    title.innerHTML = `Playing: ${trackTitle}`;
+    console.log(`Loaded: ${trackTitle}`);
+  });
 });
 
 document.getElementById('download-button').addEventListener('click', () => {
@@ -39,5 +42,6 @@ document.getElementById('download-button').addEventListener('click', () => {
   ipc.send('download', url)
   ipc.on('download-reply', (event, message) => {
     console.log(message);
+    update();
   });
 });

@@ -1,7 +1,7 @@
 // 'use strict';
 
 const Video = require('./app/lib/Video.js');
-
+const fs = require('fs');
 const electron = require('electron');
 const path = require('path');
 const Menu = require('menu');
@@ -106,7 +106,14 @@ app.on('ready', () => {
     });
   });
 
-  ipc.on('load-tracks', (event, other) => {
-
+  ipc.on('load-track', (event, track) => {
+    const filepath = `${downloadPath}/${track}.m4a`;
+    event.sender.send('load-track-reply', filepath);
   });
+
+  ipc.on('get-files', (event, other) => {
+    let files = fs.readdirSync(downloadPath);
+    event.sender.send('get-files-reply', files);
+  });
+
 });
