@@ -21,6 +21,7 @@ html, body {
 }
 .audio {
   margin-top: 5em;
+  -webkit-app-region: no-drag;
 }
 .download {
   width: 45%;
@@ -45,12 +46,14 @@ ul {
 li {
   list-style: none;
   padding: 1em;
+  -webkit-app-region: no-drag;
 }
 li:hover {
   background-color: #282828;
 }
 input {
   margin: 1em;
+  -webkit-app-region: no-drag;
 }
 hr {
   display: block;
@@ -70,4 +73,5 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
+  -webkit-app-region: no-drag;
 }
