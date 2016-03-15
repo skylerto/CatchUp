@@ -28,12 +28,11 @@ app.on('window-all-closed', () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', () => {
-
   const downloadPath = `${app.getPath('userData')}/talks`;
   if (!fs.existsSync(downloadPath)) {
     fs.mkdirSync(downloadPath);
   }
-  console.log(downloadPath);
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     frame: false,
@@ -114,9 +113,8 @@ app.on('ready', () => {
     event.sender.send('load-track-reply', filepath);
   });
 
-  ipc.on('get-files', (event, other) => {
-    let files = fs.readdirSync(downloadPath);
+  ipc.on('get-files', (event) => {
+    const files = fs.readdirSync(downloadPath);
     event.sender.send('get-files-reply', files);
   });
-
 });
