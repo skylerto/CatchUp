@@ -4,9 +4,10 @@ const ytdl = require('ytdl-core');
 
 module.exports = class Video {
 
-  constructor(url) {
+  constructor(url, path) {
     this._url = url;
     this._title = '';
+    this._path = path;
   }
 
   set url(url) {
@@ -25,6 +26,14 @@ module.exports = class Video {
     return this._title;
   }
 
+  set path(path) {
+    this._path = path;
+  }
+
+  get path() {
+    return this._path;
+  }
+
   download(callback) {
     const that = this;
 
@@ -34,10 +43,11 @@ module.exports = class Video {
       const down = ytdl(this._url, {
         filter: (format) => format.container === 'mp4',
       });
-      const stream = down.pipe(fs.createWriteStream(`./app/talks/${that.title}.m4a`));
+      const filename = `${that.path}/talks/${that.title}.m4a`;
+      const stream = down.pipe(fs.createWriteStream(filename));
 
       stream.on('finish', () => {
-        console.log(`./app/talks/${that.title}.m4a`);
+        console.log(filename);
         callback();
       });
     });

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron . &",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "package": "electron-packager ./ Glazba --all --out ~/Desktop/Glazba --version 0.37.2 --overwrite --icon=./app/img/icon.png"
   },
   "repository": {
     "type": "git",

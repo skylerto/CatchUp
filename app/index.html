@@ -8,6 +8,10 @@
 </head>
 
 <body>
+  <script>
+    console.log(process.type);
+    var path = window.location.pathname.substr(0, window.location.pathname.lastIndexOf('/'));
+  </script>
   <div class="content">
     <div class="app-title">
       <h1>Catch Up</h1>
@@ -35,7 +39,6 @@
     </div>
 
     <script src="./lib/index.js"></script>
-    <script src="./lib/player.js"></script>
     <script>
       update();
     </script>
