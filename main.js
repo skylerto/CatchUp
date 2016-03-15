@@ -1,10 +1,13 @@
 // 'use strict';
 
+const Video = require('./app/lib/Video.js');
+
 const electron = require('electron');
 const path = require('path');
 const Menu = require('menu');
 const app = electron.app; // Module to control application life.
 const BrowserWindow = electron.BrowserWindow; // Module to create native browser window.
+const ipc = electron.ipcMain;
 
 app.commandLine.appendSwitch('remote-debugging-port', '8315');
 app.commandLine.appendSwitch('host-rules', 'MAP * 127.0.0.1');
@@ -25,7 +28,9 @@ app.on('window-all-closed', () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', () => {
-  console.log(app.getPath('userData'));
+
+  const downloadPath = `${app.getPath('userData')}/talks`;
+  console.log(downloadPath);
   // Create the browser window.
   mainWindow = new BrowserWindow({
     frame: false,
@@ -91,4 +96,17 @@ app.on('ready', () => {
   }];
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+
+
+  ipc.on('download', (event, url) => {
+    const dl = new Video(url, downloadPath);
+    dl.download(() => {
+      event.sender.send('download-reply', `${dl.title}`);
+      console.log(`downloading: ${dl.title}`);
+    });
+  });
+
+  ipc.on('load-tracks', (event, other) => {
+
+  });
 });

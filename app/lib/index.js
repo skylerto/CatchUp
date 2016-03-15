@@ -1,10 +1,6 @@
 const Video = require('./lib/Video.js');
 const fs = require('fs');
-const electron = require('electron');
-const app = electron.app;
-app.on('ready', () => {
-  console.log(app);
-});
+const ipc = require('electron').ipcRenderer;
 
 function update() {
   fs.readdir(`${app.getPath()}/talks`, (err, files) => {
@@ -31,6 +27,7 @@ const talks = document.getElementById('talks');
 talks.addEventListener('click', (e) => {
   const talk = e.target.innerHTML;
   const player = document.getElementById('player');
+  
   player.src = `${app.getPath('userPath')}/talks/${talk}.m4a`;
   const title = document.getElementById('talk-title');
   title.innerHTML = `Playing: ${talk}`;
@@ -39,9 +36,8 @@ talks.addEventListener('click', (e) => {
 
 document.getElementById('download-button').addEventListener('click', () => {
   const url = document.getElementById('url').value;
-  const path = `${app.getPath('userPath')}`;
-  const follow = new Video(url, path);
-  console.log(url);
-  follow.download(update);
-  console.log(`Downloading: ${follow.url}`);
+  ipc.send('download', url)
+  ipc.on('download-reply', (event, message) => {
+    console.log(message);
+  });
 });

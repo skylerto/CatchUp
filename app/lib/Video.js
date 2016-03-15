@@ -43,7 +43,7 @@ module.exports = class Video {
       const down = ytdl(this._url, {
         filter: (format) => format.container === 'mp4',
       });
-      const filename = `${that.path}/talks/${that.title}.m4a`;
+      const filename = `${that.path}/${that.title}.m4a`;
       const stream = down.pipe(fs.createWriteStream(filename));
 
       stream.on('finish', () => {
