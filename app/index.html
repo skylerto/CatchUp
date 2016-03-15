@@ -8,32 +8,39 @@
 </head>
 
 <body>
-  <h1>Catch Up</h1>
-
-  <div class="download">
-    <input type="text" name="url" id="url"></input>
-    <button id="download-button">download</button>
-  </div>
-
-  <div class="player">
-    <div class="">
-      <h2></h2>
+  <div class="content">
+    <div class="app-title">
+      <h1>Catch Up</h1>
     </div>
-    <div class="">
-      <audio controls="controls" id="player">
-        <source src="" type="audio/mp4">
-      </audio>
+
+    <div class="download">
+      <input type="text" name="url" id="url"></input>
+      <button id="download-button">download</button>
     </div>
+  <hr>
+    <div class="audio">
+      <div class="">
+        <h3 id="talk-title"></h3>
+      </div>
+      <div class="player">
+        <audio id="player" controls="controls">
+          <source src="" type="audio/mp4">
+        </audio>
+      </div>
+    </div>
+
+    <div class="talks">
+      <h3 class="title">Downloads</h3>
+      <ul id="talks"></ul>
+    </div>
+
+    <script src="./lib/index.js"></script>
+    <script src="./lib/player.js"></script>
+    <script>
+      update();
+    </script>
   </div>
 
-  <div class="talks">
-    <ul id="talks"></ul>
-  </div>
-
-  <script src="./lib/index.js"></script>
-  <script>
-    update();
-  </script>
 </body>
 
 </html>

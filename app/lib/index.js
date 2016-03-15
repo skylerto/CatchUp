@@ -8,11 +8,13 @@ var fs = require('fs');
 let talks = document.getElementById("talks");
 talks.addEventListener("click", (e) => {
   let talk = e.target.innerHTML;
+  e.target.className = e.target.className == "playing" ? "" : "playing";
   let player = document.getElementById("player");
-  player.src = "talks/" + talk;
+  player.src = "talks/" + talk + ".m4a";
+  let title = document.getElementById("talk-title");
+  title.innerHTML = "Playing: " + talk;
   console.log(talk);
 });
-
 
 document.getElementById("download-button").addEventListener("click", () => {
   var url = document.getElementById("url").value;
