@@ -28,6 +28,7 @@
     "ytdl-core": "0.7.12"
   },
   "devDependencies": {
+    "electron-packager": "5.2.1",
     "electron-prebuilt": "0.37.2",
     "eslint": "^2.0.0",
     "eslint-config-airbnb": "6.1.0",
