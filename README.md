@@ -10,6 +10,8 @@ Quite often I find myself on public transit without wifi. Like a good developer 
 
 ## Usage
 
+Checkout the [releases](https://github.com/skylerto/Glazba/releases) page, or ...
+
 1. Download/clone
 2. npm install .
 3. npm start
