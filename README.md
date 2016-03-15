@@ -1,7 +1,7 @@
-CatchUp
+Glazba
 =======
 
-CatchUp is an Electron app to manage developer talks.
+Glazba (Music) is an Electron app to manage developer talks.
 
 ## Why
 
