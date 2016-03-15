@@ -8,25 +8,24 @@
 }
 html, body {
   font-family: 'Montserrat';
+  color: white;
+  background-color: #333333;
   -webkit-app-region: drag;
 }
-
 .content {
-  width:90%;
+  width: 90%;
   margin: 0 auto;
 }
-
 .app-title {
   text-align: center;
 }
 .audio {
-    margin-top: 5em;
+  margin-top: 5em;
 }
 .download {
-  width: 30%;
+  width: 45%;
   margin: 0 auto;
-    margin-bottom: 2em;
-
+  margin-bottom: 2em;
 }
 #talk-title {
   text-align: center;
@@ -48,5 +47,27 @@ li {
   padding: 1em;
 }
 li:hover {
-  background-color: #d6d6d6;
+  background-color: #282828;
+}
+input {
+  margin: 1em;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #4CAF50;
+  margin: 1em 0;
+  padding: 0;
+}
+button {
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
 }

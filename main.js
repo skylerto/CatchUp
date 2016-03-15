@@ -30,6 +30,9 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
 
   const downloadPath = `${app.getPath('userData')}/talks`;
+  if(!fs.existsSync(downloadPath)){
+    fs.mkdirSync(downloadPath);
+  }
   console.log(downloadPath);
   // Create the browser window.
   mainWindow = new BrowserWindow({
