@@ -1,5 +1,5 @@
 {
-  "name": "catchup",
+  "name": "glazba",
   "version": "0.0.1",
   "description": "An electron application to manage dev talks",
   "main": "main.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skylerto/CatchUp.git"
+    "url": "git+https://github.com/skylerto/Glazba.git"
   },
   "keywords": [
     "Electron",
@@ -20,9 +20,9 @@
   "author": "Skyler Layne <skylerclayne@gmail.com> (http://www.skylerlayne.me)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/skylerto/CatchUp/issues"
+    "url": "https://github.com/skylerto/Glazba/issues"
   },
-  "homepage": "https://github.com/skylerto/CatchUp#readme",
+  "homepage": "https://github.com/skylerto/Glazba#readme",
   "dependencies": {
     "youtube-dl": "1.10.5",
     "ytdl-core": "0.7.12"
