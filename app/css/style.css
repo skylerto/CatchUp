@@ -34,6 +34,7 @@ html, body {
 .player {
   width: 42.5%;
   margin: 0 auto;
+  -webkit-app-region: no-drag;
 }
 .talks > .title {
   padding-left: 2em;
