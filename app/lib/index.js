@@ -32,6 +32,7 @@ talks.addEventListener('click', (e) => {
     ipc.send('load-track', trackTitle);
     ipc.on('load-track-reply', (event, track) => {
       player.src = track;
+      player.play();
       const title = document.getElementById('talk-title');
       title.innerHTML = `Playing: ${trackTitle}`;
       console.log(`Loaded: ${trackTitle}`);
