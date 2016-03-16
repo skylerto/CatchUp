@@ -18,30 +18,34 @@
     var path = window.location.pathname.substr(0, window.location.pathname.lastIndexOf('/'));
   </script>
   <div class="content">
-    <div class="app-title">
-      <h1>Glazba</h1>
+    <div class="header">
+      <div class="app-title">
+        <h1>Glazba</h1>
+      </div>
+
+      <div class="audio">
+        <div class="">
+          <h3 id="talk-title"></h3>
+        </div>
+        <div class="player">
+          <audio id="player" controls="controls">
+            <source src="" type="audio/mp4">
+          </audio>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="talks">
+      <h3 class="title">Downloads</h3>
+      <ul id="talks"></ul>
     </div>
 
     <div class="download">
       <label for="url">URL</label>
       <input type="text" name="url" id="url"></input>
       <button id="download-button">download</button>
-    </div>
-    <hr>
-    <div class="audio">
-      <div class="">
-        <h3 id="talk-title"></h3>
-      </div>
-      <div class="player">
-        <audio id="player" controls="controls">
-          <source src="" type="audio/mp4">
-        </audio>
-      </div>
-    </div>
-
-    <div class="talks">
-      <h3 class="title">Downloads</h3>
-      <ul id="talks"></ul>
     </div>
 
 

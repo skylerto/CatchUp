@@ -20,12 +20,11 @@ html, body {
   text-align: center;
 }
 .audio {
-  margin-top: 5em;
+  margin-top: 2em;
+  margin-bottom: 2em;
   -webkit-app-region: no-drag;
 }
 .download {
-  width: 40%;
-  margin: 0 auto;
   margin-bottom: 2em;
 }
 #talk-title {
@@ -55,6 +54,8 @@ li:hover {
 input {
   margin: 1em;
   -webkit-app-region: no-drag;
+  padding: 0.5em;
+  width: 50%;
 }
 hr {
   display: block;
