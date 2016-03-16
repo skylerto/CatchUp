@@ -15,6 +15,16 @@ html, body {
 .content {
   width: 90%;
   margin: 0 auto;
+  padding-top: 200px;
+}
+.header {
+  background-color: #333333;
+  position: fixed;
+  width:100%;
+  z-index: 24;
+}
+.clearfix {
+  clear:both;
 }
 .app-title {
   text-align: center;
