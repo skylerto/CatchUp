@@ -1,6 +1,6 @@
 {
   "name": "glazba",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An electron application to manage dev talks",
   "main": "main.js",
   "scripts": {
