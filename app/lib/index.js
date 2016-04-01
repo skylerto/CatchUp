@@ -17,6 +17,13 @@ function update() {
         node.className = 'talk';
         const value = document.createTextNode(file);
         node.appendChild(value);
+
+        const btn = document.createElement('BUTTON');
+        btn.className = 'delete-song';
+        const btntxt = document.createTextNode('X');
+        btn.appendChild(btntxt);
+
+        node.appendChild(btn);
         talks.appendChild(node);
         console.log(`${file}`);
       });
@@ -24,9 +31,10 @@ function update() {
   });
 }
 
+// Play the track
 const talks = document.getElementById('talks');
 talks.addEventListener('click', (e) => {
-  const trackTitle = e.target.innerHTML;
+  const trackTitle = e.target.textContent.substring(0,e.target.textContent.length - 1);
   if (!trackTitle.includes('li')) {
     const player = document.getElementById('player');
     ipc.send('load-track', trackTitle);
@@ -39,6 +47,8 @@ talks.addEventListener('click', (e) => {
     });
   }
 });
+
+const deletebtn = document.getElementById('delete-song');
 
 document.getElementById('download-button').addEventListener('click', () => {
   if (navigator.onLine) {

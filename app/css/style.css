@@ -87,3 +87,7 @@ button {
   font-size: 14px;
   -webkit-app-region: no-drag;
 }
+
+.delete-song {
+float:right;
+}

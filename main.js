@@ -28,6 +28,7 @@ app.on('window-all-closed', () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', () => {
+
   const downloadPath = `${app.getPath('userData')}/talks`;
   if (!fs.existsSync(downloadPath)) {
     fs.mkdirSync(downloadPath);
@@ -41,11 +42,11 @@ app.on('ready', () => {
     width: 800,
   });
 
+  mainWindow.webContents.openDevTools();
   // and load the index.html of the app.
   mainWindow.loadURL(path.join('file://', __dirname, '/app/index.html'));
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -99,12 +100,22 @@ app.on('ready', () => {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 
-
+  // Download a video
   ipc.on('download', (event, url) => {
     const dl = new Video(url, downloadPath);
     dl.download(() => {
       event.sender.send('download-reply', `${dl.title}`);
       console.log(`downloading: ${dl.title}`);
+    });
+  });
+
+  // Delete a talk
+  ipc.on('delete', (event, url) => {
+    const filepath = `${downloadPath}/${track}.m4a`;
+    fs.unlink(filepath, (err) => {
+      if(err) throw err;
+      event.sender.send('delete-reply', `${dl.title}`);
+      console.log(`Deleted: ${dl.title}`);
     });
   });
 
